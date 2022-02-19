@@ -21,5 +21,12 @@
 			</array>
 		</dict>
 	</dict>
+	<key>ATSApplicationFontsPath</key>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Delm-Medium.otf</string>
+		<string>ThirstySoftRegular.otf</string>
+	</array>
 </dict>
 </plist>
