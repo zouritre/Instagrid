@@ -26,37 +26,46 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="2gO-eG-sJM" userLabel="MainStack">
-                                <rect key="frame" x="64.5" y="313.5" width="285" height="528.5"/>
+                                <rect key="frame" x="64.5" y="314" width="285" height="528"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Cs1-5z-6eH" userLabel="GridAndShare">
-                                        <rect key="frame" x="0.0" y="0.0" width="285" height="347"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Cs1-5z-6eH" userLabel="GridAndShare">
+                                        <rect key="frame" x="0.0" y="0.0" width="285" height="346.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="87Q-FC-foh" userLabel="Share">
-                                                <rect key="frame" x="0.0" y="0.0" width="285" height="48"/>
+                                                <rect key="frame" x="61.5" y="0.0" width="162" height="47.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Arrow Up" translatesAutoresizingMaskIntoConstraints="NO" id="wMi-QT-dOM">
-                                                        <rect key="frame" x="137.5" y="0.0" width="10" height="15"/>
+                                                        <rect key="frame" x="76" y="0.0" width="10" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="10" id="1P2-BL-D6G"/>
                                                             <constraint firstAttribute="height" constant="15" id="tVJ-Uz-g2o"/>
                                                         </constraints>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                        <variation key="heightClass=compact-widthClass=compact" image="Arrow Left"/>
+                                                        <variation key="heightClass=compact-widthClass=regular" image="Arrow Left"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESU-zy-fjt">
-                                                        <rect key="frame" x="64.5" y="24" width="156" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emf-Q6-ZJw" userLabel="SwipeLeft">
+                                                        <rect key="frame" x="10.5" y="19.5" width="141.5" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=compact-widthClass=compact">
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        </variation>
+                                                        <variation key="heightClass=compact-widthClass=compact" hidden="NO"/>
+                                                        <variation key="heightClass=compact-widthClass=regular" hidden="NO"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESU-zy-fjt" userLabel="SwipeUp">
+                                                        <rect key="frame" x="0.0" y="24" width="162" height="23.5"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=compact-widthClass=compact" hidden="YES"/>
+                                                        <variation key="heightClass=compact-widthClass=regular" hidden="YES"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTa-2Y-hTP" userLabel="Dispositions">
-                                                <rect key="frame" x="0.0" y="62" width="285" height="285"/>
+                                                <rect key="frame" x="0.0" y="61.5" width="285" height="285"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-aq-WkR" userLabel="Stack View Dispo1">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-aq-WkR" userLabel="disposition1">
                                                         <rect key="frame" x="10" y="10" width="265" height="265"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjw-U0-xoD" userLabel="dispo1">
@@ -117,7 +126,7 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PtW-6P-8MR" userLabel="Stack View Dispo2">
+                                                    <stackView hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PtW-6P-8MR" userLabel="disposition2">
                                                         <rect key="frame" x="10" y="10" width="265" height="265"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DeH-d2-UqH" userLabel="Stack View Dispo1 row2">
@@ -178,7 +187,7 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hin-QC-onW" userLabel="Stack View Dispo3">
+                                                    <stackView hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hin-QC-onW" userLabel="disposition3">
                                                         <rect key="frame" x="10" y="10" width="265" height="265"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xfg-ik-WJH" userLabel="Stack View Dispo3 row1">
@@ -283,28 +292,28 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <variation key="heightClass=compact-widthClass=compact" alignment="center" axis="horizontal"/>
-                                        <variation key="heightClass=compact-widthClass=regular" alignment="center" axis="horizontal"/>
+                                        <variation key="heightClass=compact-widthClass=compact" axis="horizontal"/>
+                                        <variation key="heightClass=compact-widthClass=regular" axis="horizontal"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="G8P-Sw-dDs" userLabel="Dispositions">
-                                        <rect key="frame" x="0.0" y="447" width="285" height="81.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hbO-ii-wGO" userLabel="Dispositions">
+                                        <rect key="frame" x="0.0" y="446.5" width="285" height="81.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="Layout 1" translatesAutoresizingMaskIntoConstraints="NO" id="Nm4-iU-g7C">
+                                            <imageView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" image="Layout 1" highlightedImage="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="e3t-ln-fmu">
                                                 <rect key="frame" x="0.0" y="0.0" width="81.5" height="81.5"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Nm4-iU-g7C" secondAttribute="height" multiplier="1:1" id="Pml-ez-ebc"/>
+                                                    <constraint firstAttribute="width" secondItem="e3t-ln-fmu" secondAttribute="height" multiplier="1:1" id="wru-2u-hwZ"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" image="Layout 2" translatesAutoresizingMaskIntoConstraints="NO" id="t7r-5R-iuR">
+                                            <imageView opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" image="Layout 2" translatesAutoresizingMaskIntoConstraints="NO" id="llN-Gf-sJR">
                                                 <rect key="frame" x="101.5" y="0.0" width="82" height="81.5"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="t7r-5R-iuR" secondAttribute="height" multiplier="1:1" id="zbF-V2-fAd"/>
+                                                    <constraint firstAttribute="width" secondItem="llN-Gf-sJR" secondAttribute="height" multiplier="1:1" id="zha-MN-O9M"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" tag="2" contentMode="scaleAspectFit" image="Layout 3" translatesAutoresizingMaskIntoConstraints="NO" id="dnh-qa-5Ej">
+                                            <imageView opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleAspectFit" image="Layout 3" translatesAutoresizingMaskIntoConstraints="NO" id="JyM-he-1BC">
                                                 <rect key="frame" x="203.5" y="0.0" width="81.5" height="81.5"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="dnh-qa-5Ej" secondAttribute="height" multiplier="1:1" id="hlW-pt-VoS"/>
+                                                    <constraint firstAttribute="width" secondItem="JyM-he-1BC" secondAttribute="height" multiplier="1:1" id="0fg-U3-7rB"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -333,10 +342,11 @@
                         <outlet property="disposition2" destination="PtW-6P-8MR" id="LnT-ly-fKi"/>
                         <outlet property="disposition3" destination="hin-QC-onW" id="kIK-Ps-RL0"/>
                         <outlet property="instagridLabel" destination="ayh-Yn-cSb" id="WlF-n1-qlz"/>
-                        <outlet property="showDispo1" destination="Nm4-iU-g7C" id="BdA-Cn-ZXo"/>
-                        <outlet property="showDispo2" destination="t7r-5R-iuR" id="Sj4-bO-ZUc"/>
-                        <outlet property="showDispo3" destination="dnh-qa-5Ej" id="FYi-wm-EhC"/>
-                        <outlet property="swipeToShare" destination="ESU-zy-fjt" id="S3l-X7-CXE"/>
+                        <outlet property="showDispo1" destination="e3t-ln-fmu" id="8gA-Bx-nuT"/>
+                        <outlet property="showDispo2" destination="llN-Gf-sJR" id="dRZ-KE-A45"/>
+                        <outlet property="showDispo3" destination="JyM-he-1BC" id="e7U-P1-T0o"/>
+                        <outlet property="swipeLeft" destination="Emf-Q6-ZJw" id="Otl-0V-9kn"/>
+                        <outlet property="swipeUp" destination="ESU-zy-fjt" id="S3l-X7-CXE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -345,11 +355,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Arrow Left" width="3.5" height="4.5"/>
         <image name="Arrow Up" width="4.5" height="3.5"/>
         <image name="Layout 1" width="27" height="27"/>
         <image name="Layout 2" width="27" height="27"/>
         <image name="Layout 3" width="27" height="27"/>
         <image name="Plus" width="13.5" height="13.5"/>
+        <image name="Selected" width="27" height="27"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
