@@ -10,10 +10,9 @@ import UIKit
 class ViewController: UIViewController {
     
     
-    
     @IBOutlet weak var instagridLabel: UILabel!
     @IBOutlet weak var swipeUp: UILabel!
-    @IBOutlet weak var swipeLeft: UILabel!
+    @IBOutlet weak var swipeLeft: UILabel!    
     
     @IBOutlet weak var disposition1: UIStackView!
     @IBOutlet weak var disposition2: UIStackView!
@@ -25,9 +24,7 @@ class ViewController: UIViewController {
     
     private var dispositionStackViews: [UIStackView] = []
     private var dispositionImageViews : [UIImageView] = []
-    
     private var currentlySelectedDisposition : UIStackView!
-    
     private var checkedIcon : UIImage = UIImage(named: "Selected")!
     
     
