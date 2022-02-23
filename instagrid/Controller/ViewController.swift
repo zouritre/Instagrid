@@ -18,67 +18,49 @@ class ViewController: UIViewController {
     @IBOutlet weak var disposition2: UIStackView!
     @IBOutlet weak var disposition3: UIStackView!
     
-    @IBOutlet weak var showDispo1: UIImageView!
-    @IBOutlet weak var showDispo2: UIImageView!
-    @IBOutlet weak var showDispo3: UIImageView!
+    @IBOutlet weak var showDispo1: UIButton!
+    @IBOutlet weak var showDispo2: UIButton!
+    @IBOutlet weak var showDispo3: UIButton!
     
     private var dispositionStackViews: [UIStackView] = []
-    private var dispositionImageViews : [UIImageView] = []
+    private var dispositionBottomButtons : [UIButton] = []
     private var currentlySelectedDisposition : UIStackView!
     private var checkedIcon : UIImage = UIImage(named: "Selected")!
-    
-    
-    /// Make every disposition images tappable like buttons
-    private func setTapRecognizerOnDispositionImages() {
-        
-        
-        for element in dispositionImageViews {
-            
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-            
-//            Make every images tappable
-            element.isUserInteractionEnabled = true
-            element.addGestureRecognizer(tapGestureRecognizer)
-
-        }
-        
-
-    }
 
     
     /// Enable the StackView corresponding to the button tapped
     /// - Parameter tapGestureRecognizer: The UITapGestureRecognizer of the image tapped
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    @IBAction func dispositionButtonTapped(sender: UIButton)
     {
-        
-        if let previousDisposition = currentlySelectedDisposition {
-
-//            Hide the previously selected disposition grid
-            previousDisposition.isHidden = true
-            
-//            Remove the checkmark from the previously tapped image
-            dispositionImageViews[previousDisposition.tag].isHighlighted = false
-
-            let tappedImage = tapGestureRecognizer.view as! UIImageView
-
-//            Enable the StackView (central grid) corresponding to the tapped image tag
-            switch tappedImage.tag{
-
-            case 0: displaySelectedDisposition(target: 0)
-            case 1: displaySelectedDisposition(target: 1)
-            case 2: displaySelectedDisposition(target: 2)
-
-            default: print("Couldn't load selected disposition")
-
-            }
-
-        }
-
-        else {
-
-            print("currentlySelectedDisposition var is nil")
-
-        }
+        sender.isHighlighted = true
+//        if let previousDisposition = currentlySelectedDisposition {
+//
+////            Hide the previously selected disposition grid
+//            previousDisposition.isHidden = true
+//
+////            Remove the checkmark from the previously tapped image
+//            dispositionBottomButtons[previousDisposition.tag].isHighlighted = false
+//
+//            let tappedImage = sender.view as! UIImageView
+//
+////            Enable the StackView (central grid) corresponding to the tapped image tag
+//            switch tappedImage.tag{
+//
+//            case 0: displaySelectedDisposition(target: 0)
+//            case 1: displaySelectedDisposition(target: 1)
+//            case 2: displaySelectedDisposition(target: 2)
+//
+//            default: print("Couldn't load selected disposition")
+//
+//            }
+//
+//        }
+//
+//        else {
+//
+//            print("currentlySelectedDisposition var is nil")
+//
+//        }
 
     }
     
@@ -93,26 +75,26 @@ class ViewController: UIViewController {
         currentlySelectedDisposition = dispositionStackViews[target]
         
 //        Add a checkmark to the tapped image
-        dispositionImageViews[target].isHighlighted = true
+        dispositionBottomButtons[target].isHighlighted = true
         
     }
     
     
     private func groupUIelementsInArrays() {
         
-        dispositionImageViews = [showDispo1, showDispo2, showDispo3]
+        dispositionBottomButtons = [showDispo1, showDispo2, showDispo3]
         
         dispositionStackViews = [disposition1, disposition2, disposition3]
         
     }
     
     
-    private func setHighlightedImageOnDispositionImages (){
+    private func setHighlightedImageOnDispositionButtons (){
         
         
-        for element in dispositionImageViews {
+        for element in dispositionBottomButtons {
             
-            element.highlightedImage = checkedIcon
+            element.setBackgroundImage(checkedIcon, for: .highlighted)
 
         }
     }
@@ -123,7 +105,7 @@ class ViewController: UIViewController {
         
         currentlySelectedDisposition = dispositionStackViews[0]
         
-        dispositionImageViews[0].isHighlighted = true
+        dispositionBottomButtons[0].isHighlighted = true
         
     }
     
@@ -141,9 +123,7 @@ class ViewController: UIViewController {
 
         groupUIelementsInArrays()
 
-        setTapRecognizerOnDispositionImages()
-
-        setHighlightedImageOnDispositionImages()
+        setHighlightedImageOnDispositionButtons()
 
         setDefaultGrid()
         
