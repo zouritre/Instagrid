@@ -32,35 +32,35 @@ class ViewController: UIViewController {
     /// - Parameter tapGestureRecognizer: The UITapGestureRecognizer of the image tapped
     @IBAction func dispositionButtonTapped(sender: UIButton)
     {
+        
+        print("tapped")
         sender.isHighlighted = true
-//        if let previousDisposition = currentlySelectedDisposition {
-//
-////            Hide the previously selected disposition grid
-//            previousDisposition.isHidden = true
-//
-////            Remove the checkmark from the previously tapped image
-//            dispositionBottomButtons[previousDisposition.tag].isHighlighted = false
-//
-//            let tappedImage = sender.view as! UIImageView
-//
-////            Enable the StackView (central grid) corresponding to the tapped image tag
-//            switch tappedImage.tag{
-//
-//            case 0: displaySelectedDisposition(target: 0)
-//            case 1: displaySelectedDisposition(target: 1)
-//            case 2: displaySelectedDisposition(target: 2)
-//
-//            default: print("Couldn't load selected disposition")
-//
-//            }
-//
-//        }
-//
-//        else {
-//
-//            print("currentlySelectedDisposition var is nil")
-//
-//        }
+        if let previousDisposition = currentlySelectedDisposition {
+
+//            Hide the previously selected disposition grid
+            previousDisposition.isHidden = true
+
+//            Remove the checkmark from the previously tapped image
+            dispositionBottomButtons[previousDisposition.tag].isHighlighted = false
+
+//            Enable the StackView (central grid) corresponding to the tapped image tag
+            switch sender.tag{
+
+            case 0: displaySelectedDisposition(target: 0)
+            case 1: displaySelectedDisposition(target: 1)
+            case 2: displaySelectedDisposition(target: 2)
+
+            default: print("Couldn't load selected disposition")
+
+            }
+
+        }
+
+        else {
+
+            print("currentlySelectedDisposition var is nil")
+
+        }
 
     }
     
