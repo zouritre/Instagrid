@@ -33,16 +33,14 @@ class ViewController: UIViewController {
     @IBAction func dispositionButtonTapped(sender: UIButton)
     {
         
-        print("tapped")
-        sender.isHighlighted = true
         if let previousDisposition = currentlySelectedDisposition {
 
 //            Hide the previously selected disposition grid
             previousDisposition.isHidden = true
-
-//            Remove the checkmark from the previously tapped image
-            dispositionBottomButtons[previousDisposition.tag].isHighlighted = false
-
+            
+//            Remove the checkmark from the previously selected button
+            dispositionBottomButtons[previousDisposition.tag].setImage(UIImage(), for: .normal)
+            
 //            Enable the StackView (central grid) corresponding to the tapped image tag
             switch sender.tag{
 
@@ -68,6 +66,7 @@ class ViewController: UIViewController {
     /// Display the selected grid
     private func displaySelectedDisposition (target: Int) {
         
+            
 //        Show the grid corresponding to the image tapped
         dispositionStackViews[target].isHidden = false
         
@@ -75,7 +74,8 @@ class ViewController: UIViewController {
         currentlySelectedDisposition = dispositionStackViews[target]
         
 //        Add a checkmark to the tapped image
-        dispositionBottomButtons[target].isHighlighted = true
+        dispositionBottomButtons[target].setImage(checkedIcon, for: .normal)
+        
         
     }
     
@@ -89,23 +89,12 @@ class ViewController: UIViewController {
     }
     
     
-    private func setHighlightedImageOnDispositionButtons (){
-        
-        
-        for element in dispositionBottomButtons {
-            
-            element.setBackgroundImage(checkedIcon, for: .highlighted)
-
-        }
-    }
-    
-    
     private func setDefaultGrid(){
         
         
         currentlySelectedDisposition = dispositionStackViews[0]
         
-        dispositionBottomButtons[0].isHighlighted = true
+        dispositionBottomButtons[0].setImage(checkedIcon, for: .normal)
         
     }
     
@@ -122,8 +111,6 @@ class ViewController: UIViewController {
         swipeLeft.font = UIFont(name: "Delm", size: 26)
 
         groupUIelementsInArrays()
-
-        setHighlightedImageOnDispositionButtons()
 
         setDefaultGrid()
         
