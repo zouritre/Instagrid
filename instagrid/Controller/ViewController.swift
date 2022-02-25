@@ -63,6 +63,12 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func addImage(_ sender: UIButton) {
+        
+        let photoLib = PhotoLibrairy(mainVC: self)
+        photoLib.openLibrairy()
+    }
+    
     /// Display the selected grid
     private func displaySelectedDisposition (target: Int) {
         
@@ -113,6 +119,9 @@ class ViewController: UIViewController {
         groupUIelementsInArrays()
 
         setDefaultGrid()
+        
+        
+        
         
         
     }

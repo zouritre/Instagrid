@@ -90,6 +90,9 @@
                                                             <backgroundConfiguration key="background"/>
                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YAx-cl-GZq"/>
+                                                        </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Psk-Il-QyE" userLabel="Stack View Dispo1 row2">
                                                         <rect key="frame" x="0.0" y="182" width="354" height="172"/>
