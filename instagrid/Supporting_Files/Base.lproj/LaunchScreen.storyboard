@@ -15,10 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Instagrid" translatesAutoresizingMaskIntoConstraints="NO" id="r4t-xd-7Rc">
-                                <rect key="frame" x="124" y="421.5" width="166" height="53"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Instagrid" translatesAutoresizingMaskIntoConstraints="NO" id="r4t-xd-7Rc">
+                                <rect key="frame" x="127.5" y="417" width="159" height="62"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="r4t-xd-7Rc" secondAttribute="height" multiplier="41:13" id="2Qk-0M-Mgl"/>
+                                    <constraint firstAttribute="width" secondItem="r4t-xd-7Rc" secondAttribute="height" multiplier="159:62" id="IDO-WV-QFu"/>
+                                    <constraint firstAttribute="width" constant="159" id="QDD-aZ-31H"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -26,21 +27,8 @@
                         <color key="backgroundColor" red="0.31764706970000001" green="0.58431375029999999" blue="0.78823530669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="r4t-xd-7Rc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="I4u-Qe-jzi"/>
-                            <constraint firstItem="r4t-xd-7Rc" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.2" id="QD3-s7-7L5"/>
-                            <constraint firstItem="r4t-xd-7Rc" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.4" id="W52-fz-Rsv"/>
                             <constraint firstItem="r4t-xd-7Rc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="izk-cI-Id8"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="W52-fz-Rsv"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="QD3-s7-7L5"/>
-                                <include reference="W52-fz-Rsv"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

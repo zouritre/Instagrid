@@ -10,27 +10,48 @@ import UIKit
 class ViewController: UIViewController {
     
     
+    
     @IBOutlet weak var instagridLabel: UILabel!
     @IBOutlet weak var swipeUp: UILabel!
-    @IBOutlet weak var swipeLeft: UILabel!    
+    @IBOutlet weak var swipeLeft: UILabel!
     
     @IBOutlet weak var disposition1: UIStackView!
     @IBOutlet weak var disposition2: UIStackView!
     @IBOutlet weak var disposition3: UIStackView!
     
-    @IBOutlet weak var showDispo1: UIButton!
-    @IBOutlet weak var showDispo2: UIButton!
-    @IBOutlet weak var showDispo3: UIButton!
+    @IBOutlet weak var showDispo1: UIImageView!
+    @IBOutlet weak var showDispo2: UIImageView!
+    @IBOutlet weak var showDispo3: UIImageView!
     
     private var dispositionStackViews: [UIStackView] = []
-    private var dispositionBottomButtons : [UIButton] = []
+    private var dispositionImageViews : [UIImageView] = []
+    
     private var currentlySelectedDisposition : UIStackView!
+    
     private var checkedIcon : UIImage = UIImage(named: "Selected")!
+    
+    
+    /// Make every disposition images tappable like buttons
+    private func setTapRecognizerOnDispositionImages() {
+        
+        
+        for element in dispositionImageViews {
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+            
+//            Make every images tappable
+            element.isUserInteractionEnabled = true
+            element.addGestureRecognizer(tapGestureRecognizer)
+
+        }
+        
+
+    }
 
     
     /// Enable the StackView corresponding to the button tapped
     /// - Parameter tapGestureRecognizer: The UITapGestureRecognizer of the image tapped
-    @IBAction func dispositionButtonTapped(sender: UIButton)
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         
         if let previousDisposition = currentlySelectedDisposition {
@@ -38,11 +59,13 @@ class ViewController: UIViewController {
 //            Hide the previously selected disposition grid
             previousDisposition.isHidden = true
             
-//            Remove the checkmark from the previously selected button
-            dispositionBottomButtons[previousDisposition.tag].setImage(UIImage(), for: .normal)
-            
+//            Remove the checkmark from the previously tapped image
+            dispositionImageViews[previousDisposition.tag].isHighlighted = false
+
+            let tappedImage = tapGestureRecognizer.view as! UIImageView
+
 //            Enable the StackView (central grid) corresponding to the tapped image tag
-            switch sender.tag{
+            switch tappedImage.tag{
 
             case 0: displaySelectedDisposition(target: 0)
             case 1: displaySelectedDisposition(target: 1)
@@ -63,16 +86,9 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func addImage(_ sender: UIButton) {
-        
-        let photoLib = PhotoLibrairy(mainVC: self)
-        photoLib.openLibrairy()
-    }
-    
     /// Display the selected grid
     private func displaySelectedDisposition (target: Int) {
         
-            
 //        Show the grid corresponding to the image tapped
         dispositionStackViews[target].isHidden = false
         
@@ -80,18 +96,28 @@ class ViewController: UIViewController {
         currentlySelectedDisposition = dispositionStackViews[target]
         
 //        Add a checkmark to the tapped image
-        dispositionBottomButtons[target].setImage(checkedIcon, for: .normal)
-        
+        dispositionImageViews[target].isHighlighted = true
         
     }
     
     
     private func groupUIelementsInArrays() {
         
-        dispositionBottomButtons = [showDispo1, showDispo2, showDispo3]
+        dispositionImageViews = [showDispo1, showDispo2, showDispo3]
         
         dispositionStackViews = [disposition1, disposition2, disposition3]
         
+    }
+    
+    
+    private func setHighlightedImageOnDispositionImages (){
+        
+        
+        for element in dispositionImageViews {
+            
+            element.highlightedImage = checkedIcon
+
+        }
     }
     
     
@@ -100,7 +126,7 @@ class ViewController: UIViewController {
         
         currentlySelectedDisposition = dispositionStackViews[0]
         
-        dispositionBottomButtons[0].setImage(checkedIcon, for: .normal)
+        dispositionImageViews[0].isHighlighted = true
         
     }
     
@@ -118,10 +144,11 @@ class ViewController: UIViewController {
 
         groupUIelementsInArrays()
 
+        setTapRecognizerOnDispositionImages()
+
+        setHighlightedImageOnDispositionImages()
+
         setDefaultGrid()
-        
-        
-        
         
         
     }
