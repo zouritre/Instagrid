@@ -28,9 +28,5 @@
 		<string>Delm-Medium.otf</string>
 		<string>ThirstySoftRegular.otf</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To add a new image you need to allow this app to browse your photo librairy.</string>
-	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
-	<true/>
 </dict>
 </plist>

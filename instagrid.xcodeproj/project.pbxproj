@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E947C81F27C11E07003B86DF /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E947C81D27C11E07003B86DF /* ThirstySoftRegular.otf */; };
 		E947C82027C11E07003B86DF /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E947C81E27C11E07003B86DF /* Delm-Medium.otf */; };
-		E965E90C27C7D61E002032B7 /* PhotoLibrairy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E965E90B27C7D61E002032B7 /* PhotoLibrairy.swift */; };
 		E9CF85F127BFE1BA004F9ADF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF85F027BFE1BA004F9ADF /* AppDelegate.swift */; };
 		E9CF85F327BFE1BA004F9ADF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF85F227BFE1BA004F9ADF /* SceneDelegate.swift */; };
 		E9CF85F527BFE1BA004F9ADF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF85F427BFE1BA004F9ADF /* ViewController.swift */; };
@@ -21,7 +20,6 @@
 /* Begin PBXFileReference section */
 		E947C81D27C11E07003B86DF /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		E947C81E27C11E07003B86DF /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
-		E965E90B27C7D61E002032B7 /* PhotoLibrairy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoLibrairy.swift; path = instagrid/Model/PhotoLibrairy.swift; sourceTree = SOURCE_ROOT; };
 		E9CF85ED27BFE1BA004F9ADF /* instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9CF85F027BFE1BA004F9ADF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9CF85F227BFE1BA004F9ADF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,14 +86,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		E970E58127C53D500063921C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				E965E90B27C7D61E002032B7 /* PhotoLibrairy.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		E9CF85E427BFE1BA004F9ADF = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +105,6 @@
 		E9CF85EF27BFE1BA004F9ADF /* instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				E970E58127C53D500063921C /* Model */,
 				E902A23627C03C65005E0F56 /* Resources */,
 				E95C571A27C029A8008DDDDF /* Controller */,
 				E95C571B27C029B8008DDDDF /* View */,
@@ -199,7 +188,6 @@
 			files = (
 				E9CF85F527BFE1BA004F9ADF /* ViewController.swift in Sources */,
 				E9CF85F127BFE1BA004F9ADF /* AppDelegate.swift in Sources */,
-				E965E90C27C7D61E002032B7 /* PhotoLibrairy.swift in Sources */,
 				E9CF85F327BFE1BA004F9ADF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
