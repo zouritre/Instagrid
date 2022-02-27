@@ -215,7 +215,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoG-s0-Mer">
                                                 <rect key="frame" x="0.0" y="0.0" width="119.5" height="119.5"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="YoG-s0-Mer" secondAttribute="height" multiplier="1:1" id="8tg-bM-EYv"/>
+                                                    <constraint firstAttribute="width" secondItem="YoG-s0-Mer" secondAttribute="height" multiplier="1:1" priority="999" id="8tg-bM-EYv"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" backgroundImage="Layout 1"/>

@@ -6,6 +6,19 @@
 //
 
 import UIKit
+import PhotosUI
+
+
+extension ViewController : presentPhotoLib {
+
+    func getFullLibrairyVC(vc: PHPickerViewController) {
+        present(vc, animated: true, completion: nil)
+    }
+    func getLimitedLibrairy(sharedLib : PHPhotoLibrary){
+        sharedLib.presentLimitedLibraryPicker(from: self)
+    }
+}
+
 
 class ViewController: UIViewController {
     
@@ -27,6 +40,7 @@ class ViewController: UIViewController {
     private var currentlySelectedDisposition : UIStackView!
     private var checkedIcon : UIImage = UIImage(named: "Selected")!
 
+    private var photoLib: PhotoLibrairy = PhotoLibrairy()
     
     /// Enable the StackView corresponding to the button tapped
     /// - Parameter tapGestureRecognizer: The UITapGestureRecognizer of the image tapped
@@ -65,8 +79,9 @@ class ViewController: UIViewController {
     
     @IBAction func addImage(_ sender: UIButton) {
         
-        let photoLib = PhotoLibrairy(mainVC: self)
-        photoLib.openLibrairy()
+        self.photoLib.presentFullPhotoLibDelegate = self
+        self.photoLib.openLibrairy()
+        
     }
     
     /// Display the selected grid
@@ -119,10 +134,6 @@ class ViewController: UIViewController {
         groupUIelementsInArrays()
 
         setDefaultGrid()
-        
-        
-        
-        
         
     }
 
