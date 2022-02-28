@@ -12,6 +12,7 @@ import PhotosUI
 extension ViewController : presentPhotoLib {
 
     func getFullLibrairyVC(vc: PHPickerViewController) {
+        vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
     func getLimitedLibrairy(sharedLib : PHPhotoLibrary){
@@ -19,6 +20,19 @@ extension ViewController : presentPhotoLib {
     }
 }
 
+extension ViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true, completion: nil)
+        
+        let identifiers = results.compactMap(\.assetIdentifier)
+        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
+        if fetchResult.count >= 1 {
+            
+            setButtonImage(asset: fetchResult.firstObject!)
+        }
+    }
+}
 
 class ViewController: UIViewController {
     
@@ -39,6 +53,7 @@ class ViewController: UIViewController {
     private var dispositionBottomButtons : [UIButton] = []
     private var currentlySelectedDisposition : UIStackView!
     private var checkedIcon : UIImage = UIImage(named: "Selected")!
+    private var tappedButton : UIButton!
 
     private var photoLib: PhotoLibrairy = PhotoLibrairy()
     
@@ -77,10 +92,33 @@ class ViewController: UIViewController {
     }
     
     
+    /// Open the device photo librairy
+    /// - Parameter sender: The tapped UIButton
     @IBAction func addImage(_ sender: UIButton) {
         
-        self.photoLib.presentFullPhotoLibDelegate = self
+        self.tappedButton = sender
+        self.photoLib.presentPhotoLibDelegate = self
         self.photoLib.openLibrairy()
+        
+    }
+    
+    
+    /// Set the tapped button background image to the selected image from photo librariry
+    /// - Parameter asset: A single PHAsset containing a photo from librairy
+    private func setButtonImage(asset: PHAsset) {
+        
+        
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions()
+        option.isSynchronous = true
+        manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option, resultHandler: {(result, _)->Void in
+            
+    //        Remove the middle cross on the button
+            self.tappedButton.setImage(UIImage(), for: .normal)
+            
+            self.tappedButton.setBackgroundImage(result!, for: .normal)
+        })
+        
         
     }
     

@@ -17,7 +17,7 @@ import PhotosUI
 class PhotoLibrairy {
     
     
-    var presentFullPhotoLibDelegate : presentPhotoLib!
+    var presentPhotoLibDelegate : presentPhotoLib!
     let photoLibConfig : PHPhotoLibrary
     let pickerConfiguration : PHPickerConfiguration
     let photoLibrairyVC : PHPickerViewController
@@ -42,9 +42,9 @@ class PhotoLibrairy {
         case .denied:
             self.alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
         case .authorized:
-            presentFullPhotoLibDelegate.getFullLibrairyVC!(vc: photoLibrairyVC)
+            presentPhotoLibDelegate.getFullLibrairyVC!(vc: photoLibrairyVC)
         case .limited:
-            presentFullPhotoLibDelegate.getLimitedLibrairy!(sharedLib: photoLibConfig)
+            presentPhotoLibDelegate.getLimitedLibrairy!(sharedLib: photoLibConfig)
         @unknown default:
             fatalError()
         }
@@ -62,9 +62,9 @@ class PhotoLibrairy {
             case .denied:
                 self.alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
             case .authorized:
-                presentFullPhotoLibDelegate.getFullLibrairyVC!(vc: photoLibrairyVC)
+                presentPhotoLibDelegate.getFullLibrairyVC!(vc: photoLibrairyVC)
             case .limited:
-                presentFullPhotoLibDelegate.getLimitedLibrairy!(sharedLib: photoLibConfig)
+                presentPhotoLibDelegate.getLimitedLibrairy!(sharedLib: photoLibConfig)
             @unknown default:
                 fatalError()
 
