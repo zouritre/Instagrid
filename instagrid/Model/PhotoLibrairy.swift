@@ -8,26 +8,27 @@
 import Foundation
 import PhotosUI
 
-@objc protocol presentPhotoLib {
-//    var fullPhotoLibVC : UIViewController {get set}
-    @objc optional func getFullLibrairyVC(vc: PHPickerViewController)
-    @objc optional func getLimitedLibrairy(sharedLib : PHPhotoLibrary)
+protocol presentPhotoLib {
+    
+    func getPhotoPickerVC(picker: PHPickerViewController)
+    
 }
 
 class PhotoLibrairy {
     
     
     var presentPhotoLibDelegate : presentPhotoLib!
-    let photoLibConfig : PHPhotoLibrary
     let pickerConfiguration : PHPickerConfiguration
-    let photoLibrairyVC : PHPickerViewController
+    let photoLibraryVC : PHPickerViewController
     
     init(){
-        self.photoLibConfig = PHPhotoLibrary.shared()
-        self.pickerConfiguration = PHPickerConfiguration.init(photoLibrary: self.photoLibConfig)
-        self.photoLibrairyVC = PHPickerViewController.init(configuration: self.pickerConfiguration)
+        
+        self.pickerConfiguration = PHPickerConfiguration.init(photoLibrary: .shared())
+        self.photoLibraryVC = PHPickerViewController.init(configuration: self.pickerConfiguration)
+        
     }
     
+    /// Get the app authorization to access the device photo library
     internal func openLibrairy (){
         
         
@@ -41,30 +42,28 @@ class PhotoLibrairy {
             alert(message: "This app can't access the photo librairy on this device")
         case .denied:
             self.alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
-        case .authorized:
-            presentPhotoLibDelegate.getFullLibrairyVC!(vc: photoLibrairyVC)
-        case .limited:
-            presentPhotoLibDelegate.getLimitedLibrairy!(sharedLib: photoLibConfig)
+        case .authorized, .limited:
+            presentPhotoLibDelegate.getPhotoPickerVC(picker: photoLibraryVC)
         @unknown default:
             fatalError()
         }
     }
     
+    /// Ask the user to set an authorization for the app to access the device photo library
     private func requestAuthorization(){
         
         PHPhotoLibrary.requestAuthorization(for: .readWrite){ [self] status in
-                print(status)
+            
             switch status {
+                
             case .notDetermined:
-                self.alert(message: "To add an image the app needs to have acces to your photo librairy")
+                alert(message: "To add an image the app needs to have acces to your photo librairy")
             case .restricted:
-                self.alert(message: "This app can't access the photo librairy on this device")
+                alert(message: "This app can't access the photo librairy on this device")
             case .denied:
-                self.alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
-            case .authorized:
-                presentPhotoLibDelegate.getFullLibrairyVC!(vc: photoLibrairyVC)
-            case .limited:
-                presentPhotoLibDelegate.getLimitedLibrairy!(sharedLib: photoLibConfig)
+                alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
+            case .authorized, .limited:
+                presentPhotoLibDelegate.getPhotoPickerVC(picker: photoLibraryVC)
             @unknown default:
                 fatalError()
 
@@ -73,6 +72,8 @@ class PhotoLibrairy {
     }
     
     
+    /// Display an alert on the screen
+    /// - Parameter message: The message to be displayed in the alert
     private func alert(message: String){
         print(message)
         
