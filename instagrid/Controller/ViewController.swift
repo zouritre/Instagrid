@@ -6,6 +6,42 @@
 //
 
 import UIKit
+import PhotosUI
+
+
+extension ViewController : presentPhotoLib {
+
+    func getPhotoPickerVC(picker: PHPickerViewController) {
+        picker.delegate = self
+        
+//        Present the picker on the main thread asynchronously
+        DispatchQueue.main.async {
+            self.present(picker, animated: true)
+        }
+        
+    }
+}
+
+
+extension ViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
+        dismiss(animated: true, completion: nil)
+        
+//        Get the selected asset
+        let identifiers = results.compactMap(\.assetIdentifier)
+        let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: identifiers, options: nil)
+        
+//            Exit the function if no asset has been selected from photo library (asset returns nil)
+        guard let asset = fetchResult.firstObject else {
+            print("User canceled or chosed a photo that has not been authorized from limited library")
+            return
+        }
+        
+        setButtonImage(asset: asset)
+    }
+}
 
 class ViewController: UIViewController {
     
@@ -26,7 +62,9 @@ class ViewController: UIViewController {
     private var dispositionBottomButtons : [UIButton] = []
     private var currentlySelectedDisposition : UIStackView!
     private var checkedIcon : UIImage = UIImage(named: "Selected")!
+    private var tappedButton : UIButton!
 
+    private var photoLib = PhotoLibrairy()
     
     /// Enable the StackView corresponding to the button tapped
     /// - Parameter tapGestureRecognizer: The UITapGestureRecognizer of the image tapped
@@ -63,10 +101,34 @@ class ViewController: UIViewController {
     }
     
     
+    /// Open the device photo librairy
+    /// - Parameter sender: The tapped UIButton
     @IBAction func addImage(_ sender: UIButton) {
         
-        let photoLib = PhotoLibrairy(mainVC: self)
-        photoLib.openLibrairy()
+        self.tappedButton = sender
+        self.photoLib.presentPhotoLibDelegate = self
+        self.photoLib.openLibrairy()
+        
+    }
+    
+    
+    /// Set the tapped button background image to the selected image from photo librariry
+    /// - Parameter asset: A  PHAsset object identifying a photo from librairy
+    private func setButtonImage(asset: PHAsset) {
+        
+        
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions()
+        option.isSynchronous = true
+        manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option, resultHandler: {(result, _)->Void in
+            
+    //        Remove the middle cross on the button
+            self.tappedButton.setImage(UIImage(), for: .normal)
+            
+            self.tappedButton.setBackgroundImage(result!, for: .normal)
+        })
+        
+        
     }
     
     /// Display the selected grid
@@ -86,6 +148,7 @@ class ViewController: UIViewController {
     }
     
     
+    /// Group the different grid dispositions UI elements and the buttons to display these grids in two respective arrays
     private func groupUIelementsInArrays() {
         
         dispositionBottomButtons = [showDispo1, showDispo2, showDispo3]
@@ -95,6 +158,7 @@ class ViewController: UIViewController {
     }
     
     
+    /// Define a default grid and his corresponding button at app start
     private func setDefaultGrid(){
         
         
@@ -119,10 +183,6 @@ class ViewController: UIViewController {
         groupUIelementsInArrays()
 
         setDefaultGrid()
-        
-        
-        
-        
         
     }
 

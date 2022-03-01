@@ -115,8 +115,8 @@
 		E9CF85EF27BFE1BA004F9ADF /* instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				E970E58127C53D500063921C /* Model */,
 				E902A23627C03C65005E0F56 /* Resources */,
+				E970E58127C53D500063921C /* Model */,
 				E95C571A27C029A8008DDDDF /* Controller */,
 				E95C571B27C029B8008DDDDF /* View */,
 				E95C571927C025E3008DDDDF /* Supporting_Files */,
@@ -352,6 +352,7 @@
 				DEVELOPMENT_TEAM = 32VPA6HJ38;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = instagrid/Supporting_Files/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To add a new image you need to allow this app to browse your photo librairy.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -381,6 +382,7 @@
 				DEVELOPMENT_TEAM = 32VPA6HJ38;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = instagrid/Supporting_Files/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To add a new image you need to allow this app to browse your photo librairy.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
