@@ -58,6 +58,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var showDispo2: UIButton!
     @IBOutlet weak var showDispo3: UIButton!
     
+    @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
+    
+    
     private var dispositionStackViews: [UIStackView] = []
     private var dispositionBottomButtons : [UIButton] = []
     private var currentlySelectedDisposition : UIStackView!
@@ -109,6 +112,33 @@ class ViewController: UIViewController {
         self.photoLib.presentPhotoLibDelegate = self
         self.photoLib.openLibrairy()
         
+        
+    }
+    
+    @IBAction func swipeHandler(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        
+        
+        if gestureRecognizer.state == .ended {
+            
+            print("swipped")
+        }
+    }
+    
+    
+    /// Constraint the swipe gesture in a specific direction according to the device orientation
+    @objc private func getDeviceOrientation(){
+        
+        
+        switch UIDevice.current.orientation{
+            
+         case .portrait:
+            swipeGesture.direction = .up
+        case .landscapeLeft, .landscapeRight:
+            swipeGesture.direction = .left
+         default:
+            return
+            
+         }
     }
     
     
@@ -183,6 +213,11 @@ class ViewController: UIViewController {
         groupUIelementsInArrays()
 
         setDefaultGrid()
+        
+//        Notify the controller when the device orientation change
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
         
     }
 

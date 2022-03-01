@@ -55,7 +55,7 @@
                                                             </mask>
                                                         </variation>
                                                     </imageView>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emf-Q6-ZJw" userLabel="SwipeLeft">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to share" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emf-Q6-ZJw" userLabel="SwipeLeft">
                                                         <rect key="frame" x="31" y="11.5" width="100" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -220,6 +220,7 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.062745101750000004" green="0.40000003579999999" blue="0.59607845540000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="PtL-vI-1fx" secondAttribute="bottom" constant="10" id="5yV-KT-CCv"/>
                                             <constraint firstItem="PtL-vI-1fx" firstAttribute="top" secondItem="15q-zF-h1B" secondAttribute="top" constant="10" id="7WS-Ke-Jvo"/>
@@ -235,6 +236,9 @@
                                             <constraint firstItem="zCp-jV-MNc" firstAttribute="leading" secondItem="15q-zF-h1B" secondAttribute="leading" constant="10" id="m6i-78-wdB"/>
                                             <constraint firstAttribute="width" secondItem="15q-zF-h1B" secondAttribute="height" multiplier="1:1" priority="999" id="vth-7M-9oG"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="UXE-38-Jba" appends="YES" id="HMh-Wc-DDJ"/>
+                                        </connections>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hbO-ii-wGO" userLabel="Dispositions">
                                         <rect key="frame" x="0.0" y="618.5" width="374" height="119.5"/>
@@ -314,11 +318,17 @@
                         <outlet property="showDispo1" destination="YoG-s0-Mer" id="9Ic-rS-2Zs"/>
                         <outlet property="showDispo2" destination="7DX-ub-fmW" id="Aas-5d-n42"/>
                         <outlet property="showDispo3" destination="W6B-Ef-QRy" id="WZm-Ie-lnX"/>
+                        <outlet property="swipeGesture" destination="UXE-38-Jba" id="pPC-kd-ba9"/>
                         <outlet property="swipeLeft" destination="Emf-Q6-ZJw" id="Otl-0V-9kn"/>
                         <outlet property="swipeUp" destination="ESU-zy-fjt" id="S3l-X7-CXE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="UXE-38-Jba">
+                    <connections>
+                        <action selector="swipeHandler:" destination="BYZ-38-t0r" id="CRb-4G-5iP"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="83.705357142857139"/>
         </scene>
