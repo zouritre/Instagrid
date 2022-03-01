@@ -314,6 +314,7 @@
                         <outlet property="disposition1" destination="ToP-aq-WkR" id="TnB-gX-lPm"/>
                         <outlet property="disposition2" destination="zCp-jV-MNc" id="0Cn-W7-FaG"/>
                         <outlet property="disposition3" destination="PtL-vI-1fx" id="iUP-FC-b8p"/>
+                        <outlet property="dispositionsGrid" destination="15q-zF-h1B" id="kg5-iq-ok9"/>
                         <outlet property="instagridLabel" destination="ayh-Yn-cSb" id="Rgd-wj-ner"/>
                         <outlet property="showDispo1" destination="YoG-s0-Mer" id="9Ic-rS-2Zs"/>
                         <outlet property="showDispo2" destination="7DX-ub-fmW" id="Aas-5d-n42"/>

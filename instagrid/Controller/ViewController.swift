@@ -58,15 +58,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var showDispo2: UIButton!
     @IBOutlet weak var showDispo3: UIButton!
     
+    @IBOutlet weak var dispositionsGrid: UIView!
+    
     @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
     
-    
     private var dispositionStackViews: [UIStackView] = []
-    private var dispositionBottomButtons : [UIButton] = []
     private var currentlySelectedDisposition : UIStackView!
-    private var checkedIcon : UIImage = UIImage(named: "Selected")!
+    
+    private var dispositionBottomButtons : [UIButton] = []
     private var tappedButton : UIButton!
-
+    
+    private var checkedIcon : UIImage = UIImage(named: "Selected")!
     private var photoLib = PhotoLibrairy()
     
     /// Enable the StackView corresponding to the button tapped
@@ -117,11 +119,64 @@ class ViewController: UIViewController {
     
     @IBAction func swipeHandler(_ gestureRecognizer: UISwipeGestureRecognizer) {
         
-        
         if gestureRecognizer.state == .ended {
             
-            print("swipped")
+            switch gestureRecognizer.direction {
+                
+            case .up:
+                print("translate up")
+                animateDispositionsGrid(directon: "up")
+            case .left:
+                print("Translate left")
+                animateDispositionsGrid(directon: "left")
+            default:
+                return
+            }
         }
+    }
+    
+    
+    private func animateDispositionsGrid (directon: String){
+     
+        
+        UIView.animate(withDuration: 0.5){ [self] in
+                
+            if directon == "up"{
+                
+                    makeGridTranslation(x: CGFloat.zero, y: -UIScreen.main.bounds.height/2)
+                
+            }
+            else {
+                
+                makeGridTranslation(x: -UIScreen.main.bounds.width/2, y: CGFloat.zero)
+                               
+            }
+            
+            dispositionsGrid.alpha = 0
+            
+        } completion: { _ in
+            
+            let activityVC = UIActivityViewController.init(activityItems: ["Hello"], applicationActivities: nil)
+            
+            activityVC.completionWithItemsHandler = { _, _, _, _ in
+                
+                UIView.animate(withDuration: 0.5){ [self] in
+                    makeGridTranslation(x: 0, y: 0)
+                    dispositionsGrid.alpha = 1
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.present(activityVC, animated: true)
+            }
+        }
+    }
+    
+    
+    private func makeGridTranslation(x: CGFloat, y: CGFloat){
+        
+        dispositionsGrid.transform = CGAffineTransform(translationX: x, y: y)
+        
     }
     
     
@@ -218,7 +273,6 @@ class ViewController: UIViewController {
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
-        
     }
 
 
