@@ -59,6 +59,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var showDispo3: UIButton!
     
     @IBOutlet weak var dispositionsGrid: UIView!
+    @IBOutlet weak var grid: UIView!
     
     @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
     
@@ -70,6 +71,8 @@ class ViewController: UIViewController {
     
     private var checkedIcon : UIImage = UIImage(named: "Selected")!
     private var photoLib = PhotoLibrairy()
+    
+    private var activityVC : UIActivityViewController?
     
     /// Enable the StackView corresponding to the button tapped
     /// - Parameter tapGestureRecognizer: The UITapGestureRecognizer of the image tapped
@@ -124,11 +127,9 @@ class ViewController: UIViewController {
             switch gestureRecognizer.direction {
                 
             case .up:
-                print("translate up")
-                animateDispositionsGrid(directon: "up")
+                animateDispositionsGrid(directon: .up)
             case .left:
-                print("Translate left")
-                animateDispositionsGrid(directon: "left")
+                animateDispositionsGrid(directon: .left)
             default:
                 return
             }
@@ -136,12 +137,14 @@ class ViewController: UIViewController {
     }
     
     
-    private func animateDispositionsGrid (directon: String){
+    /// Animate the grid view and present an UIActivityViewController
+    /// - Parameter directon: The direction of the swipe
+    private func animateDispositionsGrid(directon: UISwipeGestureRecognizer.Direction){
      
         
         UIView.animate(withDuration: 0.5){ [self] in
                 
-            if directon == "up"{
+            if directon == .up{
                 
                     makeGridTranslation(x: CGFloat.zero, y: -UIScreen.main.bounds.height/2)
                 
@@ -154,12 +157,10 @@ class ViewController: UIViewController {
             
             dispositionsGrid.alpha = 0
             
-        } completion: { _ in
-            
-            let activityVC = UIActivityViewController.init(activityItems: ["Hello"], applicationActivities: nil)
-            
-            activityVC.completionWithItemsHandler = { _, _, _, _ in
-                
+        } completion: { [self] _ in
+            let gridImage = convertUIViewToImage(view: grid)
+            activityVC = UIActivityViewController.init(activityItems: [gridImage], applicationActivities: nil)
+            activityVC!.completionWithItemsHandler = { _, _, _, _ in
                 UIView.animate(withDuration: 0.5){ [self] in
                     makeGridTranslation(x: 0, y: 0)
                     dispositionsGrid.alpha = 1
@@ -167,12 +168,22 @@ class ViewController: UIViewController {
             }
             
             DispatchQueue.main.async {
-                self.present(activityVC, animated: true)
+                self.present(activityVC!, animated: true)
             }
         }
     }
     
-    
+    private func convertUIViewToImage(view: UIView) -> UIImage{
+        
+        let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
+        return renderer.image { rendererContext in
+            view.layer.render(in: rendererContext.cgContext)
+        }
+    }
+    /// Move the grid to the specific coordinates
+    /// - Parameters:
+    ///   - x: The x coordinate of the new view location
+    ///   - y: The y coordinate of the new view location
     private func makeGridTranslation(x: CGFloat, y: CGFloat){
         
         dispositionsGrid.transform = CGAffineTransform(translationX: x, y: y)
