@@ -58,13 +58,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var showDispo2: UIButton!
     @IBOutlet weak var showDispo3: UIButton!
     
+    @IBOutlet weak var dispositionsGrid: UIView!
+    @IBOutlet weak var grid: UIView!
+    
+    @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
+    
     private var dispositionStackViews: [UIStackView] = []
-    private var dispositionBottomButtons : [UIButton] = []
     private var currentlySelectedDisposition : UIStackView!
-    private var checkedIcon : UIImage = UIImage(named: "Selected")!
+    
+    private var dispositionBottomButtons : [UIButton] = []
     private var tappedButton : UIButton!
-
+    
+    private var checkedIcon : UIImage = UIImage(named: "Selected")!
     private var photoLib = PhotoLibrairy()
+    
+    private var activityVC : UIActivityViewController?
     
     /// Enable the StackView corresponding to the button tapped
     /// - Parameter tapGestureRecognizer: The UITapGestureRecognizer of the image tapped
@@ -109,6 +117,94 @@ class ViewController: UIViewController {
         self.photoLib.presentPhotoLibDelegate = self
         self.photoLib.openLibrairy()
         
+        
+    }
+    
+    @IBAction func swipeHandler(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        
+        if gestureRecognizer.state == .ended {
+            
+            switch gestureRecognizer.direction {
+                
+            case .up:
+                animateDispositionsGrid(directon: .up)
+            case .left:
+                animateDispositionsGrid(directon: .left)
+            default:
+                return
+            }
+        }
+    }
+    
+    
+    /// Animate the grid view and present an UIActivityViewController
+    /// - Parameter directon: The direction of the swipe
+    private func animateDispositionsGrid(directon: UISwipeGestureRecognizer.Direction){
+     
+        
+        UIView.animate(withDuration: 0.5){ [self] in
+                
+            if directon == .up{
+                
+                    makeGridTranslation(x: CGFloat.zero, y: -UIScreen.main.bounds.height/2)
+                
+            }
+            else {
+                
+                makeGridTranslation(x: -UIScreen.main.bounds.width/2, y: CGFloat.zero)
+                               
+            }
+            
+            dispositionsGrid.alpha = 0
+            
+        } completion: { [self] _ in
+            let gridImage = convertUIViewToImage(view: grid)
+            activityVC = UIActivityViewController.init(activityItems: [gridImage], applicationActivities: nil)
+            activityVC!.completionWithItemsHandler = { _, _, _, _ in
+                UIView.animate(withDuration: 0.5){ [self] in
+                    makeGridTranslation(x: 0, y: 0)
+                    dispositionsGrid.alpha = 1
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.present(activityVC!, animated: true)
+            }
+        }
+    }
+    
+    private func convertUIViewToImage(view: UIView) -> UIImage{
+        
+        let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
+        return renderer.image { rendererContext in
+            view.layer.render(in: rendererContext.cgContext)
+        }
+    }
+    /// Move the grid to the specific coordinates
+    /// - Parameters:
+    ///   - x: The x coordinate of the new view location
+    ///   - y: The y coordinate of the new view location
+    private func makeGridTranslation(x: CGFloat, y: CGFloat){
+        
+        dispositionsGrid.transform = CGAffineTransform(translationX: x, y: y)
+        
+    }
+    
+    
+    /// Constraint the swipe gesture in a specific direction according to the device orientation
+    @objc private func getDeviceOrientation(){
+        
+        
+        switch UIDevice.current.orientation{
+            
+         case .portrait:
+            swipeGesture.direction = .up
+        case .landscapeLeft, .landscapeRight:
+            swipeGesture.direction = .left
+         default:
+            return
+            
+         }
     }
     
     
@@ -184,6 +280,10 @@ class ViewController: UIViewController {
 
         setDefaultGrid()
         
+//        Notify the controller when the device orientation change
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
 
