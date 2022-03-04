@@ -9,6 +9,9 @@ import UIKit
 import PhotosUI
 
 
+//MARK: Protocols
+
+
 extension ViewController : presentPhotoLib {
 
     func getPhotoPickerVC(picker: PHPickerViewController) {
@@ -19,6 +22,21 @@ extension ViewController : presentPhotoLib {
             self.present(picker, animated: true)
         }
         
+    }
+    
+    /// Display an alert on the screen
+    /// - Parameter message: The message to be displayed in the alert
+    func alert(message: String){
+        
+        
+        let alert = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        
+        DispatchQueue.main.async {
+            
+            self.present(alert, animated: true)
+        }
     }
 }
 
@@ -35,7 +53,7 @@ extension ViewController: PHPickerViewControllerDelegate {
         
 //            Exit the function if no asset has been selected from photo library (asset returns nil)
         guard let asset = fetchResult.firstObject else {
-            print("User canceled or chosed a photo that has not been authorized from limited library")
+//            print("User canceled or chosed a photo that has not been authorized from limited library")
             return
         }
         
@@ -46,9 +64,12 @@ extension ViewController: PHPickerViewControllerDelegate {
 class ViewController: UIViewController {
     
     
+    // MARK: Variables
+    
+    
     @IBOutlet weak var instagridLabel: UILabel!
     @IBOutlet weak var swipeUp: UILabel!
-    @IBOutlet weak var swipeLeft: UILabel!    
+    @IBOutlet weak var swipeLeft: UILabel!
     
     @IBOutlet weak var disposition1: UIStackView!
     @IBOutlet weak var disposition2: UIStackView!
@@ -120,6 +141,11 @@ class ViewController: UIViewController {
         
     }
     
+    
+    
+    // MARK: Grid swipe animation
+    
+    
     @IBAction func swipeHandler(_ gestureRecognizer: UISwipeGestureRecognizer) {
         
         if gestureRecognizer.state == .ended {
@@ -158,10 +184,15 @@ class ViewController: UIViewController {
             dispositionsGrid.alpha = 0
             
         } completion: { [self] _ in
+            
             let gridImage = convertUIViewToImage(view: grid)
+            
             activityVC = UIActivityViewController.init(activityItems: [gridImage], applicationActivities: nil)
+            
             activityVC!.completionWithItemsHandler = { _, _, _, _ in
+                
                 UIView.animate(withDuration: 0.5){ [self] in
+                    
                     makeGridTranslation(x: 0, y: 0)
                     dispositionsGrid.alpha = 1
                 }
@@ -173,21 +204,26 @@ class ViewController: UIViewController {
         }
     }
     
+    
     private func convertUIViewToImage(view: UIView) -> UIImage{
         
+        
         let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
+        
         return renderer.image { rendererContext in
             view.layer.render(in: rendererContext.cgContext)
         }
     }
+    
+    
     /// Move the grid to the specific coordinates
     /// - Parameters:
     ///   - x: The x coordinate of the new view location
     ///   - y: The y coordinate of the new view location
     private func makeGridTranslation(x: CGFloat, y: CGFloat){
         
-        dispositionsGrid.transform = CGAffineTransform(translationX: x, y: y)
         
+        dispositionsGrid.transform = CGAffineTransform(translationX: x, y: y)
     }
     
     
@@ -206,6 +242,11 @@ class ViewController: UIViewController {
             
          }
     }
+    
+    
+    
+    
+    // MARK: UI setup
     
     
     /// Set the tapped button background image to the selected image from photo librariry
