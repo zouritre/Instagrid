@@ -12,6 +12,8 @@ protocol presentPhotoLib {
     
     func getPhotoPickerVC(picker: PHPickerViewController)
     
+    func alert(message: String)
+    
 }
 
 class PhotoLibrairy {
@@ -29,7 +31,7 @@ class PhotoLibrairy {
     }
     
     /// Get the app authorization to access the device photo library
-    internal func openLibrairy (){
+    internal func openLibrairy(){
         
         
         let readWriteStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
@@ -39,9 +41,9 @@ class PhotoLibrairy {
         case .notDetermined:
             requestAuthorization()
         case .restricted:
-            alert(message: "This app can't access the photo librairy on this device")
+            presentPhotoLibDelegate.alert(message: "This app can't access the photo librairy on this device")
         case .denied:
-            self.alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
+            presentPhotoLibDelegate.alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
         case .authorized, .limited:
             presentPhotoLibDelegate.getPhotoPickerVC(picker: photoLibraryVC)
         @unknown default:
@@ -57,11 +59,11 @@ class PhotoLibrairy {
             switch status {
                 
             case .notDetermined:
-                alert(message: "To add an image the app needs to have acces to your photo librairy")
+                presentPhotoLibDelegate.alert(message: "To add an image the app needs to have acces to your photo librairy")
             case .restricted:
-                alert(message: "This app can't access the photo librairy on this device")
+                presentPhotoLibDelegate.alert(message: "This app can't access the photo librairy on this device")
             case .denied:
-                alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
+                presentPhotoLibDelegate.alert(message: "You did not allow this app to access your photo librairy. You can change that in Settings")
             case .authorized, .limited:
                 presentPhotoLibDelegate.getPhotoPickerVC(picker: photoLibraryVC)
             @unknown default:
@@ -70,13 +72,4 @@ class PhotoLibrairy {
             }
         }
     }
-    
-    
-    /// Display an alert on the screen
-    /// - Parameter message: The message to be displayed in the alert
-    private func alert(message: String){
-        print(message)
-        
-    }
-    
 }
