@@ -92,8 +92,7 @@ class ViewController: UIViewController {
     
     private var checkedIcon : UIImage = UIImage(named: "Selected")!
     private var photoLib = PhotoLibrairy()
-    
-    private var activityVC : UIActivityViewController?
+
     
     /// Enable the StackView corresponding to the button tapped
     /// - Parameter tapGestureRecognizer: The UITapGestureRecognizer of the image tapped
@@ -187,9 +186,9 @@ class ViewController: UIViewController {
             
             let gridImage = convertUIViewToImage(view: grid)
             
-            activityVC = UIActivityViewController.init(activityItems: [gridImage], applicationActivities: nil)
+            let activityVC = UIActivityViewController.init(activityItems: [gridImage], applicationActivities: nil)
             
-            activityVC!.completionWithItemsHandler = { _, _, _, _ in
+            activityVC.completionWithItemsHandler = { _, _, _, _ in
                 
                 UIView.animate(withDuration: 0.5){ [self] in
                     
@@ -199,7 +198,8 @@ class ViewController: UIViewController {
             }
             
             DispatchQueue.main.async {
-                self.present(activityVC!, animated: true)
+                
+                self.present(activityVC, animated: true)
             }
         }
     }
