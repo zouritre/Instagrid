@@ -19,6 +19,7 @@ extension ViewController : presentPhotoLib {
         
 //        Present the picker on the main thread asynchronously
         DispatchQueue.main.async {
+            self.dismiss(animated: true)
             self.present(picker, animated: true)
         }
         
