@@ -12,7 +12,7 @@ import PhotosUI
 //MARK: Protocols
 
 
-extension ViewController : presentPhotoLib {
+extension HomeScreenVC : presentPhotoLib {
 
     func getPhotoPickerVC(picker: PHPickerViewController) {
         picker.delegate = self
@@ -42,7 +42,7 @@ extension ViewController : presentPhotoLib {
 }
 
 
-extension ViewController: PHPickerViewControllerDelegate {
+extension HomeScreenVC: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
@@ -62,7 +62,7 @@ extension ViewController: PHPickerViewControllerDelegate {
     }
 }
 
-class ViewController: UIViewController {
+class HomeScreenVC: UIViewController {
     
     
     // MARK: Variables
@@ -153,9 +153,9 @@ class ViewController: UIViewController {
             switch gestureRecognizer.direction {
                 
             case .up:
-                animateDispositionsGrid(directon: .up)
+                animateDispositionsGrid(direction: .up)
             case .left:
-                animateDispositionsGrid(directon: .left)
+                animateDispositionsGrid(direction: .left)
             default:
                 return
             }
@@ -165,12 +165,12 @@ class ViewController: UIViewController {
     
     /// Animate the grid view and present an UIActivityViewController
     /// - Parameter directon: The direction of the swipe
-    private func animateDispositionsGrid(directon: UISwipeGestureRecognizer.Direction){
+    private func animateDispositionsGrid(direction: UISwipeGestureRecognizer.Direction){
      
         
         UIView.animate(withDuration: 0.5){ [self] in
                 
-            if directon == .up{
+            if direction == .up{
                 
                     makeGridTranslation(x: CGFloat.zero, y: -UIScreen.main.bounds.height/2)
                 
