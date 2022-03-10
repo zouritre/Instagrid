@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home ScreenVC-->
+        <!--Home Screen View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeScreenVC" customModule="instagrid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeScreenViewController" customModule="instagrid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,7 +86,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-aq-WkR" userLabel="disposition1">
                                                         <rect key="frame" x="10" y="10" width="354" height="354"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kye-1S-tv2">
+                                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kye-1S-tv2">
                                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="172"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -94,7 +94,7 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YAx-cl-GZq"/>
+                                                                    <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cYl-em-D3Y"/>
                                                                 </connections>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Psk-Il-QyE" userLabel="Stack View Dispo1 row2">
@@ -109,7 +109,7 @@
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="Plus"/>
                                                                         <connections>
-                                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="avO-Ck-UIR"/>
+                                                                            <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LbN-bv-sxZ"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qk-4J-Trs">
@@ -118,7 +118,7 @@
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="Plus"/>
                                                                         <connections>
-                                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TKS-x3-T4E"/>
+                                                                            <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SiE-Zt-aRs"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -141,7 +141,7 @@
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="Plus"/>
                                                                         <connections>
-                                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vNK-Jk-8Hm"/>
+                                                                            <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LB7-0r-gaD"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvL-UZ-Ou5">
@@ -150,7 +150,7 @@
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="Plus"/>
                                                                         <connections>
-                                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jtm-ra-cKx"/>
+                                                                            <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WD2-l4-65p"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -164,7 +164,7 @@
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="Plus"/>
                                                                         <connections>
-                                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s8l-LA-3mh"/>
+                                                                            <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EvL-lz-Fqm"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cb6-1g-kx5">
@@ -173,7 +173,7 @@
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="Plus"/>
                                                                         <connections>
-                                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oac-cl-NlW"/>
+                                                                            <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s7W-va-Jbr"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -195,16 +195,16 @@
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="Plus"/>
                                                                         <connections>
-                                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="56k-jH-kr1"/>
+                                                                            <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zzN-9l-Z5R"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmK-k3-ejn">
+                                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmK-k3-ejn">
                                                                         <rect key="frame" x="182" y="0.0" width="172" height="172"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="Plus"/>
                                                                         <connections>
-                                                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NPC-Ud-nyl"/>
+                                                                            <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Ox-SM-iJh"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -217,7 +217,7 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SSv-QL-kLj"/>
+                                                                    <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cBG-Y6-d7Q"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
